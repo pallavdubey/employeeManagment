@@ -1,0 +1,49 @@
+<div ng-controller="mainCtrl">
+  <div class="text-center bottomPadding">
+    <h1>Employee Management Portal</h1>
+  </div>
+
+    <div class = "container main-container">
+    <div class="row bottomPadding">
+      <div class="col-sm-3">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle width-100" type="button" data-toggle="dropdown" >Sort By - {{sortByOnView}}
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu width-100">
+              <li><a ng-click="sortOrderBy('name', 'Name')">Name</a></li>
+              <li><a ng-click="sortOrderBy('department', 'Department')"  ng-if="toggle === 1 || toggle === 3">Department</a></li>
+              <li><a ng-click="sortOrderBy('employeeId', 'Employee ID')" ng-if="toggle === 1 || toggle === 3">Employee ID</a></li>
+              <li><a ng-click="sortOrderBy('gender', 'Gender')"  ng-if="toggle === 3">Gender</a></li>
+              <li><a ng-click="sortOrderBy('emailId', 'Email ID')" ng-if="toggle === 3">Email ID</a></li>
+              <li><a ng-click="sortOrderBy('dateOfBirth', 'Date Of Birth')" ng-if="toggle === 3">Date Of Birth</a></li>
+              <li><a ng-click="sortOrderBy('dateOfJoining', 'Date Of Joining')" ng-if="toggle === 3">Date Of Joining</a></li>
+              <li><a ng-click="sortOrderBy('title', 'Title')" ng-if="toggle === 3">Title</a></li>
+              <li><a ng-click="sortOrderBy('salary', 'Salary')" ng-if="toggle === 3">Salary</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-class="{'active': active}" ng-click="updateView(1)"><a data-toggle="tooltip" title="Card View"><i class="fa fa-th-large" aria-hidden="true"></i></a></button>
+          <button type="button" class="btn btn-primary" ng-click="updateView(2)"><a data-toggle="tooltip" title="List View"><i class="fa fa-align-justify" aria-hidden="true"></i></a></button>
+          <button type="button" class="btn btn-primary" ng-click="updateView(3)"><a data-toggle="tooltip" title="Detail View"><i class="fa fa-list-alt" aria-hidden="true"></i></a></button>
+        </div>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeModal" ng-click="addEmployee()"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Employee</button>
+      </div>
+      <div class="col-sm-5">
+        <div class="input-group" id="adv-search">
+          <input type="text" class="form-control" placeholder="Filter" ng-model="filterValue">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-primary" ng-click="filterData()"><i class="fa fa-filter" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <view-directive selected-view = "toggle" employee-details = "employeeData" sort-order-by="selectedSortOrder" filter-value = "filterValue"></view-directive>
+   
+     
+     
+   </div>
+    <div ng-include="'app/views/add-employee-modal.html'"></div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row" ng-if = "selectedView===3" >
+    <div class="col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Employee ID</th>
+              <th>Department</th>
+              <th>Title</th>
+              <th>Gender</th>
+              <th>Date Of Birth</th>
+              <th>Date of Joining</th>
+              <th>Email ID</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  ng-repeat = "employee in employeeDetails | orderBy:sortOrderBy:false | filter: filterValue">
+              <td ng-bind = "employee.name"</td>
+              <td ng-bind = "employee.employeeId"</td>
+              <td ng-bind = "employee.department"</td>
+              <td ng-bind = "employee.title"</td>
+              <td ng-bind = "employee.gender"</td>
+              <td ng-bind = "employee.dateOfBirth"</td>
+              <td ng-bind = "employee.dateOfJoining"</td>
+              <td ng-bind = "employee.emailId"</td>
+              <td ng-bind = "employee.salary  "</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+<div ng-if="selectedView===1" ng-repeat = "employee in employeeDetails|orderBy:sortOrderBy:false | filter: filterValue">
+         <div class="col-xs-2">
+         <img  class ="img-responsive" src="{{getDisplayImage(employee.gender)}}" alt="male">
+         <div class = "text-center">
+          <h3 ng-bind = "employee.name"></h3>
+          <p ng-bind = "employee.employeeId"></p>
+          <p ng-bind = "employee.department"></p>
+         </div>
+     </div>
+ </div>
+ <div class = "row" ng-if="selectedView===2">
+    <h1 class= "col-xs-12 b-p-15"> List View </h1>
+    <!--   -->
+    <div class="col-xs-12">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation col-xs-12" ng-repeat = "employee in employeeDetails|orderBy:sortOrderBy:false | filter: filterValue"><a ng-bind = "employee.name" ></a></li>
+      </ul>          
+    </div>
+ </div>
